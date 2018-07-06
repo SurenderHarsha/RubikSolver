@@ -36,7 +36,19 @@ So, our task is to find optimized weights which can be fit into the neural netwo
 * We then perform mutation where there is a probability of a weight being slightly changed(given by mut_rate), this keeps randomness and allows us to explore more solutions and prevents us from getting stuck in local minima.
 * We repeat the process above until a set of weights is able to solve all cubes in the 10 consecutive games.
 
-The above solution works but is Naive, it might take a long amount
+The above solution works but is Naive, it might take a long amount to arrive at a solution because the search space for weights is quite large, we need to have some method to arrive at the solutions faster.
+
+After some research, I came around the topic of Replay Memory, this allowed me to make a modification on the way the agent learns by exploiting the features of the rubik's cube.
+
+Here it is,
+
+* Since the network is quite new and needs help to learn. Therefore, I decided first to teach it how to solve the cube in a single move, we reset the cube to bring it to a solved state and then shuffle it with 1 random move. We then start training the entire population to find this one move to solve the cube based on the presolved state, this eliminates a lot of other weight sets and gets us the best ones. After the population solves this one move, we arrive at a "Breakthrough". 
+* Now we increase the shuffle size to 2, where the cube is shuffled with two random moves. If the network can figure out one move to go the presolved state, the network can then immediately solve the last move as it immediately knows how to solve it. Therefore, we train the population to solve a 2 shuffle cube until a breakthrough occurs.
+* We then increase shuffle size again until a certain criteria is met. For example if the network is able to solve a 7 shuffle cube, then 2x2 is considered to be solved. There is a certain factor of luck and random mutation in learning.
+
+All the numbers given in this document are parameters and can be changed to optimize learning and new features and parameters can be added as they work like API's.
+
+
 
 
 
