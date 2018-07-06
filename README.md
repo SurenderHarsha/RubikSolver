@@ -46,7 +46,7 @@ Here it is,
 * Now we increase the shuffle size to 2, where the cube is shuffled with two random moves. If the network can figure out one move to go the presolved state, the network can then immediately solve the last move as it immediately knows how to solve it. Therefore, we train the population to solve a 2 shuffle cube until a breakthrough occurs.
 * We then increase shuffle size again until a certain criteria is met. For example if the network is able to solve a 7 shuffle cube, then 2x2 is considered to be solved. There is a certain factor of luck and random mutation in learning.
 
-All the numbers given in this document are parameters and can be changed to optimize learning and new features and parameters can be added as they work like API's.
+All the numbers given in this document are parameters and can be changed to optimize learning and new features and parameters can be added as they work like API's. I am confident that better hyperparameters exist which can speed up learning drastically, that is left to experimentation which I will be doing.
 
 
 
